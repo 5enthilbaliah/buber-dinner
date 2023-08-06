@@ -19,6 +19,12 @@ public sealed class Menu : AggregateRoot<MenuId>, ITrackable
     private readonly List<MenuReviewId> _menuReviewIds = new();
     private readonly List<MenuSection> _sections = new();
 
+#pragma warning disable CS8618
+    private Menu()
+    {
+    }
+#pragma warning restore CS8618
+
     private Menu(
         MenuId id,
         string name,
@@ -73,7 +79,9 @@ public sealed class Menu : AggregateRoot<MenuId>, ITrackable
         HostId hostId,
         string name,
         string description,
-        List<MenuSection> sections)
+        List<MenuSection> sections,
+        DateTime createdOn,
+        DateTime modifiedOn)
     {
         var menu = new Menu(
             MenuId.SpawnUniqueOne(),
@@ -81,8 +89,8 @@ public sealed class Menu : AggregateRoot<MenuId>, ITrackable
             description,
             hostId,
             AverageRating.SpawnOne(),
-            DateTime.UtcNow,
-            DateTime.UtcNow);
+            createdOn,
+            modifiedOn);
 
         if (sections.Any())
         {

@@ -1,6 +1,7 @@
 ﻿namespace BuberDinner.Application.Menus.Commands.CreateMenu;
 
 using Common.Interfaces.Persistence;
+using Common.Interfaces.Services;
 
 using Domain.Common.Errors;
 using Domain.Hosts.ValueObjects;
@@ -15,13 +16,17 @@ using MediatR;
 
 public class CreateMenuCommandHandler : IRequestHandler<CreateMenuCommand, ErrorOr<MenuResult>>
 {
-    private readonly IMenuRepository _menuRepository;
+    private readonly IDateTimeProvider _dateTimeProvider;
     private readonly IMapper _mapper;
+    private readonly IMenuRepository _menuRepository;
 
 
-    public CreateMenuCommandHandler(IMenuRepository menuRepository, IMapper mapper)
+    public CreateMenuCommandHandler(IMenuRepository menuRepository,
+        IDateTimeProvider dateTimeProvider,
+        IMapper mapper)
     {
         _menuRepository = menuRepository ?? throw new ArgumentNullException(nameof(menuRepository));
+        _dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
@@ -31,9 +36,9 @@ public class CreateMenuCommandHandler : IRequestHandler<CreateMenuCommand, Error
         {
             return Errors.Menu.InvalidHost;
         }
-        
+
         var menu = Menu.SpawnOne(
-            HostId.SpawnOne(hostId),
+            HostId.SpawnWith(hostId),
             request.Name,
             request.Description,
             request.Sections.ConvertAll(section =>
@@ -42,7 +47,9 @@ public class CreateMenuCommandHandler : IRequestHandler<CreateMenuCommand, Error
                     section.Description,
                     section.Items.ConvertAll(item => MenuItem.SpawnOne(item.Name, item.Description))
                 )
-            )
+            ),
+            _dateTimeProvider.UtcNow,
+            _dateTimeProvider.UtcNow
         );
 
         await _menuRepository.AddAsync(menu, cancellationToken)

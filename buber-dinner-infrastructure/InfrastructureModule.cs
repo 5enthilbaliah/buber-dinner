@@ -8,7 +8,10 @@ using Authentication;
 
 using Autofac;
 
+using Microsoft.EntityFrameworkCore;
+
 using Persistence;
+using Persistence.Repositories;
 
 using Services;
 
@@ -21,6 +24,13 @@ public class InfrastructureModule : Module
 
         builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>()
             .SingleInstance();
+
+        builder.Register(context =>
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<BuberDinnerDbContext>();
+            optionsBuilder.UseSqlServer("");
+            return new BuberDinnerDbContext(optionsBuilder.Options);
+        }).InstancePerLifetimeScope();
 
         builder.RegisterType<UserRepository>().As<IUserRepository>()
             .InstancePerLifetimeScope();

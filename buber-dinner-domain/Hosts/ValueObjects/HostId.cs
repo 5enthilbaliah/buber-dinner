@@ -16,7 +16,7 @@ public sealed class HostId : ValueObject
         return new HostId(Guid.NewGuid());
     }
 
-    public static HostId SpawnOne(Guid id)
+    public static HostId SpawnWith(Guid id)
     {
         return new HostId(id);
     }

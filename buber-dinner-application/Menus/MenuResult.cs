@@ -7,7 +7,7 @@ public record MenuResult(
     float AverageRating,
     List<MenuSectionResult> Sections,
     string HostId,
-    List<string> DinnerIds,
-    List<string> MenuReviewIds,
+    List<Guid> DinnerIds,
+    List<Guid> MenuReviewIds,
     DateTime CreatedOn,
     DateTime ModifiedOn);

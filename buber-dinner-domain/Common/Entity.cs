@@ -3,6 +3,12 @@
 public abstract class Entity<TId> : IEquatable<Entity<TId>>
     where TId : notnull
 {
+#pragma warning disable CS8618
+    protected Entity()
+    {
+    }
+#pragma warning restore CS8618
+
     protected Entity(TId id)
     {
         Id = id;

@@ -1,4 +1,4 @@
-﻿namespace BuberDinner.Infrastructure.Persistence;
+﻿namespace BuberDinner.Infrastructure.Persistence.Repositories;
 
 using Application.Common.Interfaces.Persistence;
 
