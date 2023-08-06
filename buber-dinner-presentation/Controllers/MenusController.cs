@@ -1,6 +1,7 @@
 ﻿namespace BuberDinner.Presentation.Controllers;
 
 using Application.Menus.Commands.CreateMenu;
+using Application.Menus.Queries.GetMenu;
 
 using Contracts.Menus;
 
@@ -13,7 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 [Authorize]
-[Route("hosts/{hostId}/menus")]
+[Route("hosts/{host_id}/menus")]
 public class MenusController : ApiController
 {
     private readonly IMapper _mapper;
@@ -27,13 +28,28 @@ public class MenusController : ApiController
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateMenu(
-        string hostId,
+    public async Task<IActionResult> CreateMenuAsync(
+        [FromRoute(Name = "host_id")] string hostId,
         CreateMenuRequest request,
         CancellationToken cancellationToken = default)
     {
         var menuResult = await _mediator.Send(
             _mapper.Map<CreateMenuCommand>((request, hostId)),
+            cancellationToken).ConfigureAwait(false);
+
+        return menuResult.Match(
+            result => Ok(_mapper.Map<MenuResponse>(result)),
+            Problem);
+    }
+
+    [HttpGet("{menu_id}")]
+    public async Task<IActionResult> GetMenuAsync(
+        [FromRoute(Name = "host_id")] string hostId,
+        [FromRoute(Name = "menu_id")] string menuId,
+        CancellationToken cancellationToken = default)
+    {
+        var menuResult = await _mediator.Send(
+            new GetMenuQuery(hostId, menuId),
             cancellationToken).ConfigureAwait(false);
 
         return menuResult.Match(
