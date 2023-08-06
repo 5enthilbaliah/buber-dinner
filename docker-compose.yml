@@ -4,9 +4,10 @@
     user: root
     container_name: mssql-buber
     ports:
-      - 1433:1433
-    env_file:
-      - env-var.env
+      - "1733:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "S3cur3P@ssW0rd!"
+      ACCEPT_EULA: "Y"
     volumes:
       - vol-buber-mssql-data:/var/opt/mssql/data
       - vol-buber-mssql-log:/var/opt/mssql/log
@@ -14,8 +15,5 @@
 
 volumes:
   vol-buber-mssql-data:
-    name: vol-buber-mssql-data
   vol-buber-mssql-log:
-    name: vol-buber-mssql-log
   vol-buber-mssql-secrets:
-    name: vol-buber-mssql-secrets

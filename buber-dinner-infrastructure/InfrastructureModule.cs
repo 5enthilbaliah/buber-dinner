@@ -9,6 +9,7 @@ using Authentication;
 using Autofac;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 using Persistence;
 using Persistence.Repositories;
@@ -27,8 +28,9 @@ public class InfrastructureModule : Module
 
         builder.Register(context =>
         {
+            var config = context.Resolve<IConfiguration>();
             var optionsBuilder = new DbContextOptionsBuilder<BuberDinnerDbContext>();
-            optionsBuilder.UseSqlServer("");
+            optionsBuilder.UseSqlServer(config.GetConnectionString("BuberDinnerDb"));
             return new BuberDinnerDbContext(optionsBuilder.Options);
         }).InstancePerLifetimeScope();
 
