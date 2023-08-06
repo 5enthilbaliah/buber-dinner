@@ -15,7 +15,7 @@ using Users.ValueObjects;
 
 using ValueObjects;
 
-public sealed class Guest : AggregateRoot<GuestId>, ITrackable
+public sealed class Guest : AggregateRoot<GuestId, Guid>, ITrackable
 {
     private readonly List<BillId> _billIds = new();
     private readonly List<MenuReviewId> _menuReviewIds = new();

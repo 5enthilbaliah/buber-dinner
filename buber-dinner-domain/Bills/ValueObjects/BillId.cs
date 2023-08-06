@@ -2,14 +2,14 @@
 
 using Common;
 
-public class BillId : ValueObject
+public class BillId : AggregateRootId<Guid>
 {
     private BillId(Guid value)
     {
         Value = value;
     }
 
-    public Guid Value { get; }
+    public override Guid Value { get; protected set; }
 
     public static BillId SpawnUniqueOne()
     {

@@ -2,14 +2,14 @@
 
 using Common;
 
-public sealed class MenuReviewId : ValueObject
+public sealed class MenuReviewId : AggregateRootId<Guid>
 {
     private MenuReviewId(Guid value)
     {
         Value = value;
     }
 
-    public Guid Value { get; }
+    public override Guid Value { get; protected set; }
 
     public static MenuReviewId SpawnUniqueOne()
     {

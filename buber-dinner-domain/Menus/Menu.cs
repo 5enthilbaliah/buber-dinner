@@ -13,7 +13,7 @@ using MenuReview.ValueObjects;
 
 using ValueObjects;
 
-public sealed class Menu : AggregateRoot<MenuId>, ITrackable
+public sealed class Menu : AggregateRoot<MenuId, Guid>, ITrackable
 {
     private readonly List<DinnerId> _dinnerIds = new();
     private readonly List<MenuReviewId> _menuReviewIds = new();

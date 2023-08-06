@@ -2,14 +2,14 @@
 
 using Common;
 
-public sealed class HostId : ValueObject
+public sealed class HostId : AggregateRootId<Guid>
 {
     private HostId(Guid value)
     {
         Value = value;
     }
 
-    public Guid Value { get; }
+    public override Guid Value { get; protected set; }
 
     public static HostId SpawnUniqueOne()
     {

@@ -13,7 +13,7 @@ using Menus.ValueObjects;
 
 using ValueObjects;
 
-public sealed class Dinner : AggregateRoot<DinnerId>, ITrackable
+public sealed class Dinner : AggregateRoot<DinnerId, Guid>, ITrackable
 {
     private readonly List<Reservation> _reservations = new();
 

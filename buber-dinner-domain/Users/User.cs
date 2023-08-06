@@ -4,7 +4,7 @@ using Common;
 
 using ValueObjects;
 
-public sealed class User : AggregateRoot<UserId>, ITrackable
+public sealed class User : AggregateRoot<UserId, Guid>, ITrackable
 {
     private User(
         UserId id,

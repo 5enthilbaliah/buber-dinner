@@ -2,14 +2,14 @@
 
 using Common;
 
-public sealed class DinnerId : ValueObject
+public sealed class DinnerId : AggregateRootId<Guid>
 {
     private DinnerId(Guid value)
     {
         Value = value;
     }
 
-    public Guid Value { get; }
+    public override Guid Value { get; protected set; }
 
     public static DinnerId SpawnUniqueOne()
     {

@@ -1,7 +1,7 @@
 ﻿namespace BuberDinner.Domain.Common;
 
-public abstract class AggregateRoot<TId> : Entity<TId>
-    where TId : notnull
+public abstract class AggregateRoot<TId, TIdType> : Entity<TId>
+    where TId : AggregateRootId<TIdType>
 {
 #pragma warning disable cs8618
     protected AggregateRoot()
@@ -9,7 +9,10 @@ public abstract class AggregateRoot<TId> : Entity<TId>
     }
 #pragma warning restore cs8618
 
-    protected AggregateRoot(TId id) : base(id)
+    protected AggregateRoot(TId id)
     {
+        Id = id;
     }
+
+    public new AggregateRootId<TIdType> Id { get; protected set; } = null!;
 }

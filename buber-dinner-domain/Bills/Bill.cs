@@ -15,7 +15,7 @@ using Hosts.ValueObjects;
 
 using ValueObjects;
 
-public sealed class Bill : AggregateRoot<BillId>, ITrackable
+public sealed class Bill : AggregateRoot<BillId, Guid>, ITrackable
 {
     private Bill(
         BillId id,
