@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buber-dinner-host", "buber-dinner-host\buber-dinner-host.csproj", "{1D8E0514-5F5C-4470-A59C-8722E7CD0AA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buber-dinner-presentation", "buber-dinner-presentation\buber-dinner-presentation.csproj", "{62C55079-F8DE-47D6-81FC-3979CC340F4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentation", "presentation", "{AB76C364-BD54-4907-8F50-7B0618BA47EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{B8C5C25A-7848-42E6-A557-58B1EF3BF0BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "periphery", "periphery", "{2A2486FC-7D76-49F4-A170-DEF52EF9EAAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buber-dinner-contracts", "buber-dinner-contracts\buber-dinner-contracts.csproj", "{7AF88B8F-0C2D-4756-ACBC-A41939102558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buber-dinner-application", "buber-dinner-application\buber-dinner-application.csproj", "{087103EB-21B9-449A-80ED-ED72D3F5B6F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buber-dinner-domain", "buber-dinner-domain\buber-dinner-domain.csproj", "{C1E2932E-1647-4359-AC88-9916F325AB59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buber-dinner-infrastructure", "buber-dinner-infrastructure\buber-dinner-infrastructure.csproj", "{85203DE3-D41E-410D-A26F-355C889B5A43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9D8BF9CE-1810-4B99-855A-4F8D45C5F878}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E35FEC35-DBD6-4322-9063-858E4356FB97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D8E0514-5F5C-4470-A59C-8722E7CD0AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D8E0514-5F5C-4470-A59C-8722E7CD0AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D8E0514-5F5C-4470-A59C-8722E7CD0AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D8E0514-5F5C-4470-A59C-8722E7CD0AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C55079-F8DE-47D6-81FC-3979CC340F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C55079-F8DE-47D6-81FC-3979CC340F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C55079-F8DE-47D6-81FC-3979CC340F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C55079-F8DE-47D6-81FC-3979CC340F4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF88B8F-0C2D-4756-ACBC-A41939102558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF88B8F-0C2D-4756-ACBC-A41939102558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF88B8F-0C2D-4756-ACBC-A41939102558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF88B8F-0C2D-4756-ACBC-A41939102558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087103EB-21B9-449A-80ED-ED72D3F5B6F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087103EB-21B9-449A-80ED-ED72D3F5B6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087103EB-21B9-449A-80ED-ED72D3F5B6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087103EB-21B9-449A-80ED-ED72D3F5B6F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E2932E-1647-4359-AC88-9916F325AB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E2932E-1647-4359-AC88-9916F325AB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E2932E-1647-4359-AC88-9916F325AB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E2932E-1647-4359-AC88-9916F325AB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85203DE3-D41E-410D-A26F-355C889B5A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85203DE3-D41E-410D-A26F-355C889B5A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85203DE3-D41E-410D-A26F-355C889B5A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85203DE3-D41E-410D-A26F-355C889B5A43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{62C55079-F8DE-47D6-81FC-3979CC340F4A} = {AB76C364-BD54-4907-8F50-7B0618BA47EC}
+		{7AF88B8F-0C2D-4756-ACBC-A41939102558} = {AB76C364-BD54-4907-8F50-7B0618BA47EC}
+		{087103EB-21B9-449A-80ED-ED72D3F5B6F3} = {B8C5C25A-7848-42E6-A557-58B1EF3BF0BC}
+		{C1E2932E-1647-4359-AC88-9916F325AB59} = {B8C5C25A-7848-42E6-A557-58B1EF3BF0BC}
+		{85203DE3-D41E-410D-A26F-355C889B5A43} = {2A2486FC-7D76-49F4-A170-DEF52EF9EAAF}
+		{B8C5C25A-7848-42E6-A557-58B1EF3BF0BC} = {9D8BF9CE-1810-4B99-855A-4F8D45C5F878}
+		{2A2486FC-7D76-49F4-A170-DEF52EF9EAAF} = {9D8BF9CE-1810-4B99-855A-4F8D45C5F878}
+		{AB76C364-BD54-4907-8F50-7B0618BA47EC} = {9D8BF9CE-1810-4B99-855A-4F8D45C5F878}
+		{1D8E0514-5F5C-4470-A59C-8722E7CD0AA6} = {9D8BF9CE-1810-4B99-855A-4F8D45C5F878}
+	EndGlobalSection
+EndGlobal
