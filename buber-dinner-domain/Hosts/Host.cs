@@ -15,6 +15,12 @@ public sealed class Host : AggregateRoot<HostId, Guid>, ITrackable
 {
     private readonly List<DinnerId> _dinnerIds = new();
     private readonly List<MenuId> _menuIds = new();
+    
+#pragma warning disable CS8618
+    private Host()
+    {
+    }
+#pragma warning restore CS8618
 
     private Host(
         HostId id,

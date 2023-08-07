@@ -98,7 +98,7 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
     {
         builder.OwnsMany(m => m.DinnerIds, dinnerBuilder =>
         {
-            dinnerBuilder.ToTable("MenuDinnerIds");
+            dinnerBuilder.ToTable("MenuDinners");
             dinnerBuilder.WithOwner().HasForeignKey("MenuId");
             dinnerBuilder.HasKey("Id");
             dinnerBuilder.Property(d => d.Value)
@@ -114,7 +114,7 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
     {
         builder.OwnsMany(m => m.MenuReviewIds, reviewBuilder =>
         {
-            reviewBuilder.ToTable("MenuReviewIds");
+            reviewBuilder.ToTable("MenuReviews");
             reviewBuilder.WithOwner().HasForeignKey("MenuId");
             reviewBuilder.HasKey("Id");
             reviewBuilder.Property(d => d.Value)

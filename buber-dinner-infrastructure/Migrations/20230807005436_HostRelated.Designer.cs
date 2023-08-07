@@ -4,6 +4,7 @@ using BuberDinner.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuberDinner.Infrastructure.Migrations
 {
     [DbContext(typeof(BuberDinnerDbContext))]
-    partial class BuberDinnerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807005436_HostRelated")]
+    partial class HostRelated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,7 +128,7 @@ namespace BuberDinner.Infrastructure.Migrations
 
                             b1.HasIndex("HostId");
 
-                            b1.ToTable("HostDinners", (string)null);
+                            b1.ToTable("HostDinnerIds", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("HostId");
@@ -150,7 +153,7 @@ namespace BuberDinner.Infrastructure.Migrations
 
                             b1.HasIndex("HostId");
 
-                            b1.ToTable("HostMenus", (string)null);
+                            b1.ToTable("HostMenuIds", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("HostId");
@@ -185,7 +188,7 @@ namespace BuberDinner.Infrastructure.Migrations
 
                             b1.HasIndex("MenuId");
 
-                            b1.ToTable("MenuReviews", (string)null);
+                            b1.ToTable("MenuReviewIds", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("MenuId");
@@ -290,7 +293,7 @@ namespace BuberDinner.Infrastructure.Migrations
 
                             b1.HasIndex("MenuId");
 
-                            b1.ToTable("MenuDinners", (string)null);
+                            b1.ToTable("MenuDinnerIds", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("MenuId");

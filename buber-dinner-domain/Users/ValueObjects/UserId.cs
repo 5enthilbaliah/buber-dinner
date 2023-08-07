@@ -20,4 +20,9 @@ public sealed class UserId : AggregateRootId<Guid>
     {
         yield return Value;
     }
+
+    public static UserId SpawnWith(Guid value)
+    {
+        return new UserId(value);
+    }
 }
