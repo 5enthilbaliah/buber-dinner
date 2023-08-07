@@ -58,7 +58,7 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
     {
         builder.OwnsMany(host => host.DinnerIds, dinnerBuilder =>
         {
-            dinnerBuilder.ToTable("HostDinners");
+            dinnerBuilder.ToTable("HostDinnerXrefs");
             dinnerBuilder.WithOwner().HasForeignKey("HostId");
             dinnerBuilder.HasKey("Id");
             dinnerBuilder.Property(dinnerId => dinnerId.Value)
@@ -74,7 +74,7 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
     {
         builder.OwnsMany(host => host.MenuIds, dinnerBuilder =>
         {
-            dinnerBuilder.ToTable("HostMenus");
+            dinnerBuilder.ToTable("HostMenuXrefs");
             dinnerBuilder.WithOwner().HasForeignKey("HostId");
             dinnerBuilder.HasKey("Id");
             dinnerBuilder.Property(menuId => menuId.Value)

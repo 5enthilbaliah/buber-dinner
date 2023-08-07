@@ -20,4 +20,9 @@ public sealed class MenuReviewId : AggregateRootId<Guid>
     {
         yield return Value;
     }
+
+    public static MenuReviewId SpawnWith(Guid id)
+    {
+        return new MenuReviewId(id);
+    }
 }

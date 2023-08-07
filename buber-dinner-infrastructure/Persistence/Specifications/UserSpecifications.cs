@@ -11,27 +11,27 @@ public class UserSpecifications  : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable("Users");
-        builder.HasKey(m => m.Id);
-        builder.Property(m => m.Id)
+        builder.HasKey(user => user.Id);
+        builder.Property(user => user.Id)
             .ValueGeneratedNever()
             .HasConversion(
                 id => id.Value,
                 value => UserId.SpawnWith(value));
-        builder.Property(m => m.FirstName)
+        builder.Property(user => user.FirstName)
             .HasColumnType("nvarchar(100)")
             .HasMaxLength(100);
-        builder.Property(m => m.LastName)
+        builder.Property(user => user.LastName)
             .HasColumnType("nvarchar(100)")
             .HasMaxLength(100);
-        builder.Property(m => m.Email)
+        builder.Property(user => user.Email)
             .HasColumnType("nvarchar(150)")
             .HasMaxLength(100);
-        builder.Property(m => m.Password)
+        builder.Property(user => user.Password)
             .HasColumnType("nvarchar(200)")
             .HasMaxLength(100);
-        builder.Property(m => m.CreatedOn)
+        builder.Property(user => user.CreatedOn)
             .HasColumnType("datetime2(7)");
-        builder.Property(m => m.ModifiedOn)
+        builder.Property(user => user.ModifiedOn)
             .HasColumnType("datetime2(7)");
     }
 }

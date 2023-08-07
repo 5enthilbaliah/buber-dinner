@@ -15,6 +15,12 @@ using ValueObjects;
 
 public sealed class MenuReview : AggregateRoot<MenuReviewId, Guid>, ITrackable
 {
+#pragma warning disable CS8618
+    private MenuReview()
+    {
+    }
+#pragma warning restore CS8618
+    
     private MenuReview(
         MenuReviewId id,
         Rating rating,

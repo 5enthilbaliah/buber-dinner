@@ -21,54 +21,54 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
     private void ConfigureMenuEntity(EntityTypeBuilder<Menu> builder)
     {
         builder.ToTable("Menus");
-        builder.HasKey(m => m.Id);
-        builder.Property(m => m.Id)
+        builder.HasKey(menu => menu.Id);
+        builder.Property(menu => menu.Id)
             .ValueGeneratedNever()
             .HasConversion(
                 id => id.Value,
                 value => MenuId.SpawnWith(value));
-        builder.Property(m => m.Name)
+        builder.Property(menu => menu.Name)
             .HasColumnType("nvarchar(100)")
             .HasMaxLength(100);
-        builder.Property(m => m.Description)
+        builder.Property(menu => menu.Description)
             .HasColumnType("nvarchar(1000)")
             .HasMaxLength(1000);
-        builder.OwnsOne(m => m.AverageRating, avgBuilder =>
+        builder.OwnsOne(menu => menu.AverageRating, avgBuilder =>
         {
-            avgBuilder.Property(p => p.NumOfRatings)
+            avgBuilder.Property(rating => rating.NumOfRatings)
                 .HasColumnType("int")
                 .HasColumnName("NumOfRatings");
             
-            avgBuilder.Property(p => p.Value)
+            avgBuilder.Property(rating => rating.Value)
                 .HasColumnType("decimal(3,2)")
                 .HasColumnName("AverageRating");
         });
-        builder.Property(m => m.HostId)
+        builder.Property(menu => menu.HostId)
             .HasConversion(
                 id => id.Value,
                 value => HostId.SpawnWith(value));
-        builder.Property(m => m.CreatedOn)
+        builder.Property(menu => menu.CreatedOn)
             .HasColumnType("datetime2(7)");
-        builder.Property(m => m.ModifiedOn)
+        builder.Property(menu => menu.ModifiedOn)
             .HasColumnType("datetime2(7)");
     }
 
     private void ConfigureMenuSectionEntity(EntityTypeBuilder<Menu> builder)
     {
-        builder.OwnsMany(m => m.Sections, secBuilder =>
+        builder.OwnsMany(menu => menu.Sections, secBuilder =>
         {
             secBuilder.ToTable("MenuSections");
             secBuilder.WithOwner().HasForeignKey("MenuId");
             secBuilder.HasKey(nameof(MenuSection.Id), "MenuId");
-            secBuilder.Property(m => m.Id)
+            secBuilder.Property(menuSection => menuSection.Id)
                 .ValueGeneratedNever()
                 .HasConversion(
                     id => id.Value,
                     value => MenuSectionId.SpawnWith(value));
-            secBuilder.Property(ms => ms.Name)
+            secBuilder.Property(menuSection => menuSection.Name)
                 .HasColumnType("nvarchar(100)")
                 .HasMaxLength(100);
-            secBuilder.Property(ms => ms.Description)
+            secBuilder.Property(menuSection => menuSection.Description)
                 .HasColumnType("nvarchar(1000)")
                 .HasMaxLength(1000);
 
@@ -81,17 +81,17 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
 
     private void ConfigureMenuItemEntity(OwnedNavigationBuilder<Menu, MenuSection> secBuilder)
     {
-        secBuilder.OwnsMany(ms => ms.Items, itemBuilder =>
+        secBuilder.OwnsMany(menuSection => menuSection.Items, itemBuilder =>
         {
             itemBuilder.ToTable("MenuItems");
             itemBuilder.WithOwner().HasForeignKey("MenuSectionId", "MenuId");
             itemBuilder.HasKey(nameof(MenuItem.Id), "MenuSectionId", "MenuId");
-            itemBuilder.Property(mi => mi.Id)
+            itemBuilder.Property(menuItem => menuItem.Id)
                 .ValueGeneratedNever()
                 .HasConversion(
                     id => id.Value,
                     value => MenuItemId.SpawnWith(value));
-            itemBuilder.Property(mi => mi.Name)
+            itemBuilder.Property(menuItem => menuItem.Name)
                 .HasColumnType("nvarchar(100)")
                 .HasMaxLength(100);
             itemBuilder.Property(mi => mi.Description)
@@ -105,12 +105,12 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
 
     private void ConfigureMenuDinnerEntity(EntityTypeBuilder<Menu> builder)
     {
-        builder.OwnsMany(m => m.DinnerIds, dinnerBuilder =>
+        builder.OwnsMany(menu => menu.DinnerIds, dinnerBuilder =>
         {
-            dinnerBuilder.ToTable("MenuDinners");
+            dinnerBuilder.ToTable("MenuDinnerXrefs");
             dinnerBuilder.WithOwner().HasForeignKey("MenuId");
             dinnerBuilder.HasKey("Id");
-            dinnerBuilder.Property(d => d.Value)
+            dinnerBuilder.Property(dinnerId => dinnerId.Value)
                 .HasColumnName("DinnerId")
                 .ValueGeneratedNever();
         });
@@ -121,12 +121,12 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
 
     private void ConfigureMenuReviewEntity(EntityTypeBuilder<Menu> builder)
     {
-        builder.OwnsMany(m => m.MenuReviewIds, reviewBuilder =>
+        builder.OwnsMany(menu => menu.MenuReviewIds, reviewBuilder =>
         {
-            reviewBuilder.ToTable("MenuReviews");
+            reviewBuilder.ToTable("MenuReviewXrefs");
             reviewBuilder.WithOwner().HasForeignKey("MenuId");
             reviewBuilder.HasKey("Id");
-            reviewBuilder.Property(d => d.Value)
+            reviewBuilder.Property(menuReviewId => menuReviewId.Value)
                 .HasColumnName("MenuReviewId")
                 .ValueGeneratedNever();
         });
