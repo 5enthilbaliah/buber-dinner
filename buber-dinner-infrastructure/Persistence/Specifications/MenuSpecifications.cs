@@ -31,9 +31,18 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
             .HasColumnType("nvarchar(100)")
             .HasMaxLength(100);
         builder.Property(m => m.Description)
-            .HasColumnType("nvarchar(100)")
-            .HasMaxLength(100);
-        builder.OwnsOne(m => m.AverageRating);
+            .HasColumnType("nvarchar(1000)")
+            .HasMaxLength(1000);
+        builder.OwnsOne(m => m.AverageRating, avgBuilder =>
+        {
+            avgBuilder.Property(p => p.NumOfRatings)
+                .HasColumnType("int")
+                .HasColumnName("NumOfRatings");
+            
+            avgBuilder.Property(p => p.Value)
+                .HasColumnType("decimal(3,2)")
+                .HasColumnName("AverageRating");
+        });
         builder.Property(m => m.HostId)
             .HasConversion(
                 id => id.Value,
@@ -60,8 +69,8 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
                 .HasColumnType("nvarchar(100)")
                 .HasMaxLength(100);
             secBuilder.Property(ms => ms.Description)
-                .HasColumnType("nvarchar(100)")
-                .HasMaxLength(100);
+                .HasColumnType("nvarchar(1000)")
+                .HasMaxLength(1000);
 
             ConfigureMenuItemEntity(secBuilder);
         });
@@ -86,8 +95,8 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
                 .HasColumnType("nvarchar(100)")
                 .HasMaxLength(100);
             itemBuilder.Property(mi => mi.Description)
-                .HasColumnType("nvarchar(100)")
-                .HasMaxLength(100);
+                .HasColumnType("nvarchar(1000)")
+                .HasMaxLength(1000);
         });
 
         secBuilder.Navigation(ms => ms.Items).Metadata.SetField("_items");

@@ -20,4 +20,9 @@ public sealed class DinnerId : AggregateRootId<Guid>
     {
         yield return Value;
     }
+
+    public static DinnerId SpawnWith(Guid id)
+    {
+        return new DinnerId(id);
+    }
 }

@@ -4,6 +4,7 @@ using BuberDinner.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuberDinner.Infrastructure.Migrations
 {
     [DbContext(typeof(BuberDinnerDbContext))]
-    partial class BuberDinnerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807014023_BillsRelated")]
+    partial class BillsRelated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,8 +94,8 @@ namespace BuberDinner.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid>("HostId")
                         .HasColumnType("uniqueidentifier");
@@ -118,13 +121,11 @@ namespace BuberDinner.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<decimal>("Amount")
-                                .HasColumnType("money")
-                                .HasColumnName("Amount");
+                                .HasColumnType("decimal(18,2)");
 
                             b1.Property<string>("Currency")
                                 .IsRequired()
-                                .HasColumnType("varchar(100)")
-                                .HasColumnName("Currency");
+                                .HasColumnType("nvarchar(max)");
 
                             b1.HasKey("BillId");
 
@@ -146,12 +147,10 @@ namespace BuberDinner.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<int>("NumOfRatings")
-                                .HasColumnType("int")
-                                .HasColumnName("NumOfRatings");
+                                .HasColumnType("int");
 
-                            b1.Property<decimal>("Value")
-                                .HasColumnType("decimal(3,2)")
-                                .HasColumnName("AverageRating");
+                            b1.Property<double>("Value")
+                                .HasColumnType("float");
 
                             b1.HasKey("HostId");
 
@@ -256,8 +255,8 @@ namespace BuberDinner.Infrastructure.Migrations
 
                             b1.Property<string>("Description")
                                 .IsRequired()
-                                .HasMaxLength(1000)
-                                .HasColumnType("nvarchar(1000)");
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
 
                             b1.Property<string>("Name")
                                 .IsRequired()
@@ -286,8 +285,8 @@ namespace BuberDinner.Infrastructure.Migrations
 
                                     b2.Property<string>("Description")
                                         .IsRequired()
-                                        .HasMaxLength(1000)
-                                        .HasColumnType("nvarchar(1000)");
+                                        .HasMaxLength(100)
+                                        .HasColumnType("nvarchar(100)");
 
                                     b2.Property<string>("Name")
                                         .IsRequired()
@@ -313,12 +312,10 @@ namespace BuberDinner.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<int>("NumOfRatings")
-                                .HasColumnType("int")
-                                .HasColumnName("NumOfRatings");
+                                .HasColumnType("int");
 
-                            b1.Property<decimal>("Value")
-                                .HasColumnType("decimal(3,2)")
-                                .HasColumnName("AverageRating");
+                            b1.Property<double>("Value")
+                                .HasColumnType("float");
 
                             b1.HasKey("MenuId");
 

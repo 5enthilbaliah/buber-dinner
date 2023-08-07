@@ -34,7 +34,16 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
         builder.Property(m => m.ProfileImage)
             .HasColumnType("nvarchar(300)")
             .HasMaxLength(300);
-        builder.OwnsOne(m => m.AverageRating);
+        builder.OwnsOne(m => m.AverageRating, avgBuilder =>
+        {
+            avgBuilder.Property(p => p.NumOfRatings)
+                .HasColumnType("int")
+                .HasColumnName("NumOfRatings");
+            
+            avgBuilder.Property(p => p.Value)
+                .HasColumnType("decimal(3,2)")
+                .HasColumnName("AverageRating");
+        });
         builder.Property(m => m.UserId)
             .HasConversion(
                 id => id.Value,

@@ -2,7 +2,7 @@
 
 using Common;
 
-public class BillId : AggregateRootId<Guid>
+public sealed class BillId : AggregateRootId<Guid>
 {
     private BillId(Guid value)
     {
@@ -19,5 +19,10 @@ public class BillId : AggregateRootId<Guid>
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
+    }
+
+    public static AggregateRootId<Guid> SpawnWith(Guid id)
+    {
+        return new BillId(id);
     }
 }

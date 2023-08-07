@@ -17,6 +17,12 @@ using ValueObjects;
 
 public sealed class Bill : AggregateRoot<BillId, Guid>, ITrackable
 {
+#pragma warning disable CS8618
+    private Bill()
+    {
+    }
+#pragma warning restore CS8618
+
     private Bill(
         BillId id,
         DinnerId dinnerId,
