@@ -20,4 +20,9 @@ public class ReservationId : ValueObject
     {
         yield return Value;
     }
+
+    public static ReservationId SpawnWith(Guid id)
+    {
+        return new ReservationId(id);
+    }
 }

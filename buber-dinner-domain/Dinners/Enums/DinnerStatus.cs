@@ -2,7 +2,7 @@
 
 public enum DinnerStatus
 {
-    Upcoming,
+    Upcoming = 1,
     InProgress,
     Ended,
     Cancelled

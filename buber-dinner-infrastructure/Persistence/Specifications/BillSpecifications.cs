@@ -19,40 +19,41 @@ public class BillSpecifications : IEntityTypeConfiguration<Bill>
     private void ConfigureBillEntity(EntityTypeBuilder<Bill> builder)
     {
         builder.ToTable("Bills");
-        builder.HasKey(m => m.Id);
-        builder.Property(m => m.Id)
+        builder.HasKey(bill => bill.Id);
+        builder.Property(bill => bill.Id)
             .ValueGeneratedNever()
             .HasConversion(
                 id => id.Value,
                 value => BillId.SpawnWith(value));
 
-        builder.Property(m => m.DinnerId)
+        builder.Property(bill => bill.DinnerId)
             .HasConversion(
                 id => id.Value,
                 value => DinnerId.SpawnWith(value));
-        builder.Property(m => m.GuestId)
+        builder.Property(bill => bill.GuestId)
             .HasConversion(
                 id => id.Value,
                 value => GuestId.SpawnWith(value));
-        builder.Property(m => m.HostId)
+        builder.Property(bill => bill.HostId)
             .HasConversion(
                 id => id.Value,
                 value => HostId.SpawnWith(value));
 
-        builder.OwnsOne(m => m.Price, priceBuilder =>
+        builder.OwnsOne(bill => bill.Price, priceBuilder =>
         {
-            priceBuilder.Property(p => p.Currency)
-                .HasColumnType("varchar(100)")
-                .HasColumnName("Currency");
+            priceBuilder.Property(price => price.Currency)
+                .HasColumnType("varchar(10)")
+                .HasColumnName("Currency")
+                .HasMaxLength(10);
             
-            priceBuilder.Property(p => p.Amount)
+            priceBuilder.Property(price => price.Amount)
                 .HasColumnType("money")
                 .HasColumnName("Amount");
         });
 
-        builder.Property(m => m.CreatedOn)
+        builder.Property(bill => bill.CreatedOn)
             .HasColumnType("datetime2(7)");
-        builder.Property(m => m.ModifiedOn)
+        builder.Property(bill => bill.ModifiedOn)
             .HasColumnType("datetime2(7)");
     }
 }

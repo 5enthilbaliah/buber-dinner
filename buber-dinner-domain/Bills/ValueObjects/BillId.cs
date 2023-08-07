@@ -21,7 +21,7 @@ public sealed class BillId : AggregateRootId<Guid>
         yield return Value;
     }
 
-    public static AggregateRootId<Guid> SpawnWith(Guid id)
+    public static BillId SpawnWith(Guid id)
     {
         return new BillId(id);
     }

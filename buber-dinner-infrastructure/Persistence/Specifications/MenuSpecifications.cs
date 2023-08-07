@@ -14,8 +14,8 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
     {
         ConfigureMenuEntity(builder);
         ConfigureMenuSectionEntity(builder);
-        ConfigureMenuDinnerIdsEntity(builder);
-        ConfigureMenuReviewIdsEntity(builder);
+        ConfigureMenuDinnerEntity(builder);
+        ConfigureMenuReviewEntity(builder);
     }
 
     private void ConfigureMenuEntity(EntityTypeBuilder<Menu> builder)
@@ -103,7 +103,7 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
         secBuilder.Navigation(ms => ms.Items).UsePropertyAccessMode(PropertyAccessMode.Field);
     }
 
-    private void ConfigureMenuDinnerIdsEntity(EntityTypeBuilder<Menu> builder)
+    private void ConfigureMenuDinnerEntity(EntityTypeBuilder<Menu> builder)
     {
         builder.OwnsMany(m => m.DinnerIds, dinnerBuilder =>
         {
@@ -119,7 +119,7 @@ public class MenuSpecifications : IEntityTypeConfiguration<Menu>
             .SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 
-    private void ConfigureMenuReviewIdsEntity(EntityTypeBuilder<Menu> builder)
+    private void ConfigureMenuReviewEntity(EntityTypeBuilder<Menu> builder)
     {
         builder.OwnsMany(m => m.MenuReviewIds, reviewBuilder =>
         {

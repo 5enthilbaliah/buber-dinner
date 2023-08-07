@@ -2,7 +2,7 @@
 
 public enum ReservationStatus
 {
-    PendingGuestConfirmation,
+    PendingGuestConfirmation = 1,
     Reserved,
     Cancelled
 }

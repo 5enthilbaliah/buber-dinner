@@ -12,8 +12,8 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
     public void Configure(EntityTypeBuilder<Host> builder)
     {
         ConfigureHostEntity(builder);
-        ConfigureHostDinnerIdsEntity(builder);
-        ConfigureHostMenuIdsEntity(builder);
+        ConfigureHostDinnerEntity(builder);
+        ConfigureHostMenuEntity(builder);
     }
     
     private void ConfigureHostEntity(EntityTypeBuilder<Host> builder)
@@ -54,7 +54,7 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
             .HasColumnType("datetime2(7)");
     }
 
-    private void ConfigureHostDinnerIdsEntity(EntityTypeBuilder<Host> builder)
+    private void ConfigureHostDinnerEntity(EntityTypeBuilder<Host> builder)
     {
         builder.OwnsMany(m => m.DinnerIds, dinnerBuilder =>
         {
@@ -70,7 +70,7 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
             .SetPropertyAccessMode(PropertyAccessMode.Field);
     }
     
-    private void ConfigureHostMenuIdsEntity(EntityTypeBuilder<Host> builder)
+    private void ConfigureHostMenuEntity(EntityTypeBuilder<Host> builder)
     {
         builder.OwnsMany(m => m.MenuIds, dinnerBuilder =>
         {

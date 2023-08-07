@@ -12,6 +12,12 @@ using ValueObjects;
 
 public class Reservation : Entity<ReservationId>, ITrackable
 {
+#pragma warning disable CS8618
+    private Reservation()
+    {
+    }
+#pragma warning restore CS8618
+    
     private Reservation(
         ReservationId id,
         int guestCount,
@@ -27,18 +33,18 @@ public class Reservation : Entity<ReservationId>, ITrackable
         ReservationStatus = reservationStatus;
         GuestId = guestId;
         BillId = billId;
-        ArrivalDateTime = arrivalDateTime;
+        ArrivalOn = arrivalDateTime;
         CreatedOn = createdOn;
         ModifiedOn = modifiedOn;
     }
 
-    public int GuestCount { get; }
-    public ReservationStatus ReservationStatus { get; }
-    public GuestId GuestId { get; }
-    public BillId BillId { get; }
-    public DateTime? ArrivalDateTime { get; }
-    public DateTime CreatedOn { get; }
-    public DateTime ModifiedOn { get; }
+    public int GuestCount { get; private set; }
+    public ReservationStatus ReservationStatus { get; private set; }
+    public GuestId GuestId { get; private set; }
+    public BillId BillId { get; private set; }
+    public DateTime? ArrivalOn { get; private set; }
+    public DateTime CreatedOn { get; private set; }
+    public DateTime ModifiedOn { get; private set; }
 
     public static Reservation SpawnOne(
         int guestCount,

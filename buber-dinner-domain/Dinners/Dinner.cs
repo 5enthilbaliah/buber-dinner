@@ -17,6 +17,12 @@ public sealed class Dinner : AggregateRoot<DinnerId, Guid>, ITrackable
 {
     private readonly List<Reservation> _reservations = new();
 
+#pragma warning disable CS8618
+    private Dinner()
+    {
+    }
+#pragma warning restore CS8618
+
     private Dinner(
         DinnerId id,
         string name,
@@ -37,10 +43,10 @@ public sealed class Dinner : AggregateRoot<DinnerId, Guid>, ITrackable
     {
         Name = name;
         Description = description;
-        StartDateTime = startDateTime;
-        EndDateTime = endDateTime;
-        StartedDateTime = startedDateTime;
-        EndedDateTime = endedDateTime;
+        StartOn = startDateTime;
+        EndOn = endDateTime;
+        StartedOn = startedDateTime;
+        EndedOn = endedDateTime;
         Status = status;
         IsPublic = isPublic;
         MaxGuests = maxGuests;
@@ -53,10 +59,10 @@ public sealed class Dinner : AggregateRoot<DinnerId, Guid>, ITrackable
 
     public string Name { get; }
     public string Description { get; }
-    public DateTime StartDateTime { get; }
-    public DateTime EndDateTime { get; }
-    public DateTime? StartedDateTime { get; }
-    public DateTime? EndedDateTime { get; }
+    public DateTime StartOn { get; }
+    public DateTime EndOn { get; }
+    public DateTime? StartedOn { get; }
+    public DateTime? EndedOn { get; }
     public DinnerStatus Status { get; }
     public bool IsPublic { get; }
     public int MaxGuests { get; }
