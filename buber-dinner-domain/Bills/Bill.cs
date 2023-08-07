@@ -2,6 +2,8 @@
 // Copyright (c) buber-dinner. All rights reserved.
 // </copyright>
 
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
+
 namespace BuberDinner.Domain.Bills;
 
 using Common;
@@ -41,17 +43,17 @@ public sealed class Bill : AggregateRoot<BillId, Guid>, ITrackable
         ModifiedOn = modifiedOn;
     }
 
-    public DinnerId DinnerId { get; }
+    public DinnerId DinnerId { get; private set; }
 
-    public GuestId GuestId { get; }
+    public GuestId GuestId { get; private set; }
 
-    public HostId HostId { get; }
+    public HostId HostId { get; private set; }
 
-    public Price Price { get; }
+    public Price Price { get; private set; }
 
-    public DateTime CreatedOn { get; }
+    public DateTime CreatedOn { get; private set; }
 
-    public DateTime ModifiedOn { get; }
+    public DateTime ModifiedOn { get; private set; }
 
     public static Bill SpawnOne(
         DinnerId dinnerId,

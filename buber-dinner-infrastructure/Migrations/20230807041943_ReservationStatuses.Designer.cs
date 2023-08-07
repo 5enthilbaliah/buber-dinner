@@ -4,6 +4,7 @@ using BuberDinner.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuberDinner.Infrastructure.Migrations
 {
     [DbContext(typeof(BuberDinnerDbContext))]
-    partial class BuberDinnerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807041943_ReservationStatuses")]
+    partial class ReservationStatuses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,57 +108,6 @@ namespace BuberDinner.Infrastructure.Migrations
                     b.ToTable("Dinners", (string)null);
                 });
 
-            modelBuilder.Entity("BuberDinner.Domain.Dinners.Entities.DinnerStatusWrapper", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2(7)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2(7)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DinnerStatuses", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(879),
-                            ModifiedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(881),
-                            Name = "Upcoming"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(892),
-                            ModifiedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(892),
-                            Name = "InProgress"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(894),
-                            ModifiedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(894),
-                            Name = "Ended"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(895),
-                            ModifiedOn = new DateTime(2023, 8, 7, 4, 31, 8, 345, DateTimeKind.Utc).AddTicks(895),
-                            Name = "Cancelled"
-                        });
-                });
-
             modelBuilder.Entity("BuberDinner.Domain.Dinners.Entities.ReservationStatusWrapper", b =>
                 {
                     b.Property<int>("Id")
@@ -180,22 +132,22 @@ namespace BuberDinner.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2023, 8, 7, 4, 31, 8, 359, DateTimeKind.Utc).AddTicks(7711),
-                            ModifiedOn = new DateTime(2023, 8, 7, 4, 31, 8, 359, DateTimeKind.Utc).AddTicks(7713),
+                            CreatedOn = new DateTime(2023, 8, 7, 4, 19, 42, 963, DateTimeKind.Utc).AddTicks(2159),
+                            ModifiedOn = new DateTime(2023, 8, 7, 4, 19, 42, 963, DateTimeKind.Utc).AddTicks(2162),
                             Name = "PendingGuestConfirmation"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2023, 8, 7, 4, 31, 8, 359, DateTimeKind.Utc).AddTicks(7719),
-                            ModifiedOn = new DateTime(2023, 8, 7, 4, 31, 8, 359, DateTimeKind.Utc).AddTicks(7719),
+                            CreatedOn = new DateTime(2023, 8, 7, 4, 19, 42, 963, DateTimeKind.Utc).AddTicks(2169),
+                            ModifiedOn = new DateTime(2023, 8, 7, 4, 19, 42, 963, DateTimeKind.Utc).AddTicks(2169),
                             Name = "Reserved"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2023, 8, 7, 4, 31, 8, 359, DateTimeKind.Utc).AddTicks(7721),
-                            ModifiedOn = new DateTime(2023, 8, 7, 4, 31, 8, 359, DateTimeKind.Utc).AddTicks(7721),
+                            CreatedOn = new DateTime(2023, 8, 7, 4, 19, 42, 963, DateTimeKind.Utc).AddTicks(2171),
+                            ModifiedOn = new DateTime(2023, 8, 7, 4, 19, 42, 963, DateTimeKind.Utc).AddTicks(2171),
                             Name = "Cancelled"
                         });
                 });

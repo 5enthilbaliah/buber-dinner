@@ -19,49 +19,49 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
     private void ConfigureHostEntity(EntityTypeBuilder<Host> builder)
     {
         builder.ToTable("Hosts");
-        builder.HasKey(m => m.Id);
-        builder.Property(m => m.Id)
+        builder.HasKey(host => host.Id);
+        builder.Property(host => host.Id)
             .ValueGeneratedNever()
             .HasConversion(
                 id => id.Value,
                 value => HostId.SpawnWith(value));
-        builder.Property(m => m.FirstName)
+        builder.Property(host => host.FirstName)
             .HasColumnType("nvarchar(100)")
             .HasMaxLength(100);
-        builder.Property(m => m.LastName)
+        builder.Property(host => host.LastName)
             .HasColumnType("nvarchar(100)")
             .HasMaxLength(100);
-        builder.Property(m => m.ProfileImage)
+        builder.Property(host => host.ProfileImage)
             .HasColumnType("nvarchar(300)")
             .HasMaxLength(300);
-        builder.OwnsOne(m => m.AverageRating, avgBuilder =>
+        builder.OwnsOne(host => host.AverageRating, avgBuilder =>
         {
-            avgBuilder.Property(p => p.NumOfRatings)
+            avgBuilder.Property(averageRating => averageRating.NumOfRatings)
                 .HasColumnType("int")
                 .HasColumnName("NumOfRatings");
             
-            avgBuilder.Property(p => p.Value)
+            avgBuilder.Property(averageRating => averageRating.Value)
                 .HasColumnType("decimal(3,2)")
                 .HasColumnName("AverageRating");
         });
-        builder.Property(m => m.UserId)
+        builder.Property(host => host.UserId)
             .HasConversion(
                 id => id.Value,
                 value => UserId.SpawnWith(value));
-        builder.Property(m => m.CreatedOn)
+        builder.Property(host => host.CreatedOn)
             .HasColumnType("datetime2(7)");
-        builder.Property(m => m.ModifiedOn)
+        builder.Property(host => host.ModifiedOn)
             .HasColumnType("datetime2(7)");
     }
 
     private void ConfigureHostDinnerEntity(EntityTypeBuilder<Host> builder)
     {
-        builder.OwnsMany(m => m.DinnerIds, dinnerBuilder =>
+        builder.OwnsMany(host => host.DinnerIds, dinnerBuilder =>
         {
             dinnerBuilder.ToTable("HostDinners");
             dinnerBuilder.WithOwner().HasForeignKey("HostId");
             dinnerBuilder.HasKey("Id");
-            dinnerBuilder.Property(d => d.Value)
+            dinnerBuilder.Property(dinnerId => dinnerId.Value)
                 .HasColumnName("DinnerId")
                 .ValueGeneratedNever();
         });
@@ -72,12 +72,12 @@ public class HostSpecifications : IEntityTypeConfiguration<Host>
     
     private void ConfigureHostMenuEntity(EntityTypeBuilder<Host> builder)
     {
-        builder.OwnsMany(m => m.MenuIds, dinnerBuilder =>
+        builder.OwnsMany(host => host.MenuIds, dinnerBuilder =>
         {
             dinnerBuilder.ToTable("HostMenus");
             dinnerBuilder.WithOwner().HasForeignKey("HostId");
             dinnerBuilder.HasKey("Id");
-            dinnerBuilder.Property(d => d.Value)
+            dinnerBuilder.Property(menuId => menuId.Value)
                 .HasColumnName("MenuId")
                 .ValueGeneratedNever();
         });

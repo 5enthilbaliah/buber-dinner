@@ -1,4 +1,5 @@
-﻿namespace BuberDinner.Domain.Dinners.Entities;
+﻿// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
+namespace BuberDinner.Domain.Dinners.Entities;
 
 using Bills.ValueObjects;
 
